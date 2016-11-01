@@ -4,5 +4,5 @@ from . import views
 
 app_name = 'strange_references'
 urlpatterns = [
-	url(r'^$', views.index, name='index'),
+	url(r'^$', views.login, name='login'),
 ]

@@ -4,8 +4,8 @@ from django.template import loader
 # Create your views here.
 
 
-def index(request):
+def login(request):
 
-	template = loader.get_template('strange_references/index.html')
+	template = loader.get_template('strange_references/login.html')
 	context = {}
 	return HttpResponse(template.render(context, request))
