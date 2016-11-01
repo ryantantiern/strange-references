@@ -9,3 +9,6 @@ def login(request):
 	template = loader.get_template('strange_references/login.html')
 	context = {}
 	return HttpResponse(template.render(context, request))
+
+def authenticate (request):
+	return HttpResponse("authenticating")
