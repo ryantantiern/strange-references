@@ -8,6 +8,7 @@ from django.template.context import RequestContext
 from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from django.utils import timezone
 
 from .models import Reference
 # Create your views here.
@@ -44,7 +45,7 @@ def authenticate(request):
     if user is not None:
         auth.login(request, user)
 		# Retrieve references posted by logged-in user
-        references_object_array = Reference.objects.filter(user_id=request.user.id)
+        references_object_array = Reference.objects.filter(user_id=request.user.id).order_by('-last_modified')
         context = {
             'user':request.user,
 			'references':references_object_array,
@@ -88,3 +89,29 @@ def register(request):
             'user':request.user,
         }
         return render(request, 'strange_references/authenticated.html', context)
+
+def add_reference(request):
+	user_id = request.user.id
+	title = request.POST.get('title')
+	note = request.POST.get('note')
+	link = request.POST.get('link')
+	last_modified = timezone.now()
+	r = Reference(title=title, note=note, link=link, last_modified=last_modified, user_id=user_id)
+	r.save()
+
+def save_reference(request):
+	reference_id = request.POST.get('id')
+	title = request.POST.get('title')
+	note = request.POST.get('note')
+	link = request.POST.get('link')
+	r = Reference.objects.get(pk=reference_id)
+	r.title = title
+	r.note = note
+	r.link = link
+	r.last_modified = timezone.now()
+	r.save()
+
+def delete_reference(request):
+	reference_id = request.POST.get('id')
+	r = Reference.objects.get(pk=reference_id)
+	r.delete()
