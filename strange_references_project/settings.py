@@ -77,10 +77,10 @@ WSGI_APPLICATION = 'strange_references_project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'strange-references-db',
-        'USER': 'grouphuser',
-        'PASSWORD': 'grouphuser',
-        'HOST': '127.0.0.1',
+        'NAME': 'strangedb',
+        'USER': 'strangeuser',
+        'PASSWORD': 'strange1',
+        'HOST': 'scenariodbinstance.cn23ibbreyu5.eu-west-1.rds.amazonaws.com',
         'PORT': '5432',
     }
 }
