@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.template import loader
 from django.contrib import auth
 from django.contrib.auth.models import User
+from django.contrib.auth import logout
 from django.template.context import RequestContext
 from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect
@@ -24,6 +25,13 @@ def login(request):
 	template = loader.get_template('strange_references/login.html')
 	context = {}
 	return HttpResponse(template.render(context, request))
+
+def logout_account(request):
+	logout(request)
+	template = loader.get_template('strange_references/login.html')
+	context = {}
+	return HttpResponse(template.render(context, request))
+
 
 def authenticate(request):
     # template = loader.get_template('strange_references/dashboard.html')
@@ -77,7 +85,6 @@ def register(request):
         user.save()
         auth.login(request,user)
         context = {
-            'username': request.user.username,
-            'user_id': request.user.id,
+            'user':request.user,
         }
         return render(request, 'strange_references/authenticated.html', context)
