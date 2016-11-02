@@ -4,7 +4,7 @@
 	<title>Dashboard</title>
 
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
 	<link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
@@ -14,32 +14,76 @@
 
 	h1 {
 		color: black;
-		text-align: center;
+		/*text-align: center;*/
+		size: 30px; 
 	}
 
 	body {
-		background-color: #a9effc
+		background-color: white;
 	}
 	</style>
 
 	<script type="text/javascript">
-		var reg = false;
-		function registerToggle() {
-			console.log(reg);
-			if (reg==false) {
-				$('#form').attr("action", "{% url 'strange_references:register' %}");
-				reg=true;
-			}
-			else {
-				$('#form').attr("action", "{% url 'strange_references:authenticate' %}");
-				reg=false;
-			}
-
-		}
+		
 	</script>
 
 </head>
-
 <body>
-	
+	<div class="container">
+		<div class="page-header">
+			<h1 style="font-size: 30px; display: inline;">Strange References</h1> 
+			<div class="dropdown pull-right" style="display: inline-block;">
+				<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">{Name}
+					<span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu">
+					<li><a href="#">Log Out</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-2">
+				<div class="dropdown pull-right" style="display: inline-block;">
+					<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Sort by
+						<span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu">
+						<li><a href="#">Title</a></li>
+						<li><a href="#">Date</a></li>
+						<li><a href="#">Link</a></li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="col-sm-2">
+				<div class="dropdown pull-right" style="display: inline-block;">
+					<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"># per page
+						<span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu">
+						<li><a href="#">10</a></li>
+						<li><a href="#">20</a></li>
+						<li><a href="#">30</a></li>
+					</ul>
+				</div>
+			</div>
+
+			<!-- middle break coloum -->
+			<div class="col-sm-6"></div>
+
+			<div class="col-sm-2">
+				<button class="btn btn-danger">+Add reference</button>
+			</div>
+
+		</div>
+	</div>
+
+	<!-- <footer class="page-footer">
+		<p>text</p>
+	</footer> -->
+
+
 </body>
