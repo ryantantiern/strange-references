@@ -32,15 +32,15 @@ def authenticate(request):
 
     if user is not None:
         auth.login(request, user)
-        valid = loader.get_template('strange_references/authenticated.html')
-        return HttpResponse(valid.render(request))
+        context = {
+            'username': request.user.username,
+            'user_id':request.user.id,
+        }
+        return render(request, 'strange_references/authenticated.html', context)
     else:
-        context = {}
         return render(request, 'strange_references/invalid.html', context)
 
-    # context = {
-    #     'user': user,
-    # }
+
     #
     # return HttpResponse(template.render(context))
 
