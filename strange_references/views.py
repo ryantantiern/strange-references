@@ -35,12 +35,11 @@ def authenticate(request):
 
     if user is not None:
         auth.login(request, user)
-        rlist = Reference.objects.filter(user_id=request.user.id)
-        output = ', '.join([r.title for r in rlist])
+		# Retrieve references posted by logged-in user
+        references_object_array = Reference.objects.filter(user_id=request.user.id)
         context = {
-            'username': request.user.username,
-            'user_id':request.user.id,
-			'shit':output,
+            'user':request.user,
+			'references':references_object_array,
         }
         return render(request, 'strange_references/authenticated.html', context)
 
