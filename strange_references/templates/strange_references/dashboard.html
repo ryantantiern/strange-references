@@ -1,0 +1,45 @@
+<head>
+	{% load staticfiles %}
+
+	<title>Dashboard</title>
+
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+
+
+	<style type="text/css">
+
+	h1 {
+		color: black;
+		text-align: center;
+	}
+
+	body {
+		background-color: #a9effc
+	}
+	</style>
+
+	<script type="text/javascript">
+		var reg = false;
+		function registerToggle() {
+			console.log(reg);
+			if (reg==false) {
+				$('#form').attr("action", "{% url 'strange_references:register' %}");
+				reg=true;
+			}
+			else {
+				$('#form').attr("action", "{% url 'strange_references:authenticate' %}");
+				reg=false;
+			}
+
+		}
+	</script>
+
+</head>
+
+<body>
+	
+</body>
