@@ -90,6 +90,10 @@ def register(request):
         }
         return render(request, 'strange_references/authenticated.html', context)
 
+def dashboard(request):
+    context = {}
+    return render(request,'strange_references/dashboard.html',context)
+
 def add_reference(request):
 	user_id = request.user.id
 	title = request.POST.get('title')
