@@ -7,6 +7,8 @@ from django.template.context import RequestContext
 from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+
+from .models import Reference
 # Create your views here.
 
 
@@ -33,9 +35,12 @@ def authenticate(request):
 
     if user is not None:
         auth.login(request, user)
+        rlist = Reference.objects.filter(user_id=request.user.id)
+        output = ', '.join([r.title for r in rlist])
         context = {
             'username': request.user.username,
             'user_id':request.user.id,
+			'shit':output,
         }
         return render(request, 'strange_references/authenticated.html', context)
 
