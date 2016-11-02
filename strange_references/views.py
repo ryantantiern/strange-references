@@ -81,3 +81,7 @@ def register(request):
             'user_id': request.user.id,
         }
         return render(request, 'strange_references/authenticated.html', context)
+
+def dashboard(request):
+    context = {}
+    return render(request,'strange_references/dashboard.html',context)

@@ -4,42 +4,129 @@
 	<title>Dashboard</title>
 
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-	<link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
 
 
 	<style type="text/css">
-
-	h1 {
-		color: black;
-		text-align: center;
-	}
-
-	body {
-		background-color: #a9effc
-	}
+	    .navbar-custom{
+            background:#3173B5;
+            color: #ffffff;
+            border-radius:0;
+        }
+        .navbar-custom .navbar-brand {
+            color:#ffffff;
+        }
+        .navbar-custom .navbar-nav > li > a {
+            color:#ffffff;
+        }
+        .navbar-custom .navbar-nav > .active > a,
+        .navbar-nav > .active > a:hover,
+        .navbar-nav > .active > a:focus {
+            color: #3173B5;
+            background-color:#ffffff;
+        }
+        .navbar-toggle{
+            border: 1px solid white;
+        }
+        .navbar-custom .navbar-toggle .icon-bar{
+            background-color: white !important;
+        }
 	</style>
 
 	<script type="text/javascript">
-		var reg = false;
-		function registerToggle() {
-			console.log(reg);
-			if (reg==false) {
-				$('#form').attr("action", "{% url 'strange_references:register' %}");
-				reg=true;
-			}
-			else {
-				$('#form').attr("action", "{% url 'strange_references:authenticate' %}");
-				reg=false;
-			}
 
-		}
 	</script>
 
 </head>
-
 <body>
-	
+    <nav class="navbar navbar-custom">
+        <div class="container">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="{% url 'strange_references:dashboard' %}">Strange References</a>
+                </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href=""><span class="glyphicon glyphicon-user"></span> Hello username</a>
+                        </li>
+                        <li>
+                            <a href="#"><span class="glyphicon glyphicon-log-in"></span> Logout</a>
+                        </li>
+                    </ul>
+                    <!-- <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">{Name}
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Log Out</a></li>
+                    </ul> -->
+                </div>
+            </div>
+        </div>
+    </nav>
+        <div class="container">
+            <ul>
+                <li>
+                    <p>Reference Title: </p>
+                    <p>Reference Note: </p>
+                    <p>Reference link: </p>
+                </li>
+                <button class="btn btn-primary">Add reference</button>
+                <button class="btn btn-warning">Delete references</button>
+                <button class="btn btn-info">Edit references</button>
+            </ul>
+        </div>
+
+{#        <div class="container">#}
+{#            <div class="row">#}
+{#                <div class="col-sm-2">#}
+{#                    <div class="dropdown pull-right" style="display: inline-block;">#}
+{#                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Sort by#}
+{#                            <span class="caret"></span>#}
+{#                        </button>#}
+{#                        <ul class="dropdown-menu">#}
+{#                            <li><a href="#">Title</a></li>#}
+{#                            <li><a href="#">Date</a></li>#}
+{#                            <li><a href="#">Link</a></li>#}
+{#                        </ul>#}
+{#                    </div>#}
+{#                </div>#}
+{##}
+{#                <div class="col-sm-2">#}
+{#                    <div class="dropdown pull-right" style="display: inline-block;">#}
+{#                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"># per page#}
+{#                            <span class="caret"></span>#}
+{#                        </button>#}
+{#                        <ul class="dropdown-menu">#}
+{#                            <li><a href="#">10</a></li>#}
+{#                            <li><a href="#">20</a></li>#}
+{#                            <li><a href="#">30</a></li>#}
+{#                        </ul>#}
+{#                    </div>#}
+{#                </div>#}
+{##}
+{#                <!-- middle break coloum -->#}
+{#                <div class="col-sm-6"></div>#}
+{##}
+{#                <div class="col-sm-2">#}
+{#                    <button class="btn btn-danger">+Add reference</button>#}
+{#                </div>#}
+{##}
+{#            </div>#}
+{#        </div>#}
+
+        <!-- <footer class="page-footer">
+            <p>text</p>
+        </footer> -->
+    </nav>
+
+
 </body>

@@ -8,3 +8,8 @@
     font-family: 'Special Elite', cursive;
     font-family: 'Roboto', sans-serif;
 }
+
+.navbar.navbar-custom{
+    background:#3173B5;
+    color: white;
+}
