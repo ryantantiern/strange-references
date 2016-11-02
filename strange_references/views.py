@@ -30,6 +30,9 @@ def authenticate(request):
 
     user = auth.authenticate(username=username, password=password)
 
+    context = {}
+
+
     if user is not None:
         auth.login(request, user)
         context = {

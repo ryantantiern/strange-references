@@ -4,30 +4,97 @@
 	<title>Login</title>
 
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
 
 	<link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
 
 	<style type="text/css">
-		body {background-image: url("{% static 'img/group-photo.jpeg' %}")}
+	h1 {
+		color: black;
+		text-align: center;
+	}
+
+	body {
+		background-color: #a9effc
+	}
 	</style>
 
 </head>
 
 <h1>Login Page</h1>
 
-<form action="{% url 'strange_references:authenticate' %}" method="post">
-	{% csrf_token %}
-	<label><b>Username</b></label>
-	<input type="text" placeholder="Enter Username" name="uname" required></input>
 
-	<label><b>Password</b></label>
-	<input type="Password" placeholder="Enter Pasword" name="pwd" required>
-
-	<button type="submit">Login</button>
-
-</form>
+<div class="container">
+<div class="row">
+<div class="col-sm-2"></div>
+<div class="col-sm-4">
+  <h2 class="col-sm-4">Login</h2>
+  </div>
+  </div>
 
 
-<p>sign in or create account here</p>
+  <form class="form-horizontal" action="{% url 'strange_references:authenticate' %}" method="post">
+  	{% csrf_token %}
+  	<!-- USERNAME -->
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="email">Username:</label>
+      <div class="col-sm-6">
+        <input type="text" class="form-control" id="uname" placeholder="Enter username" required>
+      </div>
+    </div>
+
+
+    <!-- FIRST NAME -->
+
+    <div class="collapse" id="collapse-fname">
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="fname">First name:</label>
+      <div class="col-sm-6">
+        <input type="text" class="form-control" id="fname" placeholder="Enter first name">
+      </div>
+    </div>
+    </div>
+
+
+    <!-- LAST NAME -->
+    <div class="form-group collapse">
+      <label class="control-label col-sm-2" for="lname">Last name:</label>
+      <div class="col-sm-6">
+        <input type="text" class="form-control" id="lname" placeholder="Enter last name">
+      </div>
+    </div>
+
+    <!-- EMAIL -->
+    <div class="form-group collapse">
+      <label class="control-label col-sm-2" for="email">Email:</label>
+      <div class="col-sm-6">
+        <input type="email" class="form-control" id="email" placeholder="Enter email">
+      </div>
+    </div>
+
+    <!-- PASSWORD -->
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="pwd">Password:</label>
+      <div class="col-sm-6">
+        <input type="password" class="form-control" id="pwd" placeholder="Enter password" required>
+      </div>
+    </div>
+
+    <!-- CONFIRM PASSWORD -->
+    <div class="form-group collapse " id="demo">
+      <label class="control-label col-sm-2" for="pwd2">Confirm Password:</label>
+      <div class="col-sm-6">
+        <input type="password" class="form-control" id="pwd2" placeholder="Confirm password">
+      </div>
+    </div>
+
+
+    <button type="submit" class="btn btn-default">Submit</button>
+    <button data-toggle="collapse" data-target="#collapse-fname"class="btn btn-info" onclick="">Register</button>
+  </form>
+  </div>
+
+
