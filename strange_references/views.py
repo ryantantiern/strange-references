@@ -44,13 +44,7 @@ def authenticate(request):
 
     if user is not None:
         auth.login(request, user)
-		# Retrieve references posted by logged-in user
-        references_object_array = Reference.objects.filter(user_id=request.user.id).order_by('-last_modified')
-        context = {
-            'user':request.user,
-			'references':references_object_array,
-        }
-        return render(request, 'strange_references/dashboard.html', context)
+        return dashboard(request)
 
     else:
         context = {}
@@ -91,8 +85,13 @@ def register(request):
         return render(request, 'strange_references/authenticated.html', context)
 
 def dashboard(request):
-    context = {}
-    return render(request,'strange_references/dashboard.html',context)
+	# Retrieve references posted by logged-in user
+    references_object_array = Reference.objects.filter(user_id=request.user.id).order_by('-last_modified')
+    context = {
+        'user':request.user,
+		'references':references_object_array,
+    }
+    return render(request, 'strange_references/dashboard.html', context)
 
 def add_reference(request):
 	user_id = request.user.id
