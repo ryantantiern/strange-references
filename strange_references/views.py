@@ -50,7 +50,7 @@ def authenticate(request):
             'user':request.user,
 			'references':references_object_array,
         }
-        return render(request, 'strange_references/authenticated.html', context)
+        return render(request, 'strange_references/dashboard.html', context)
 
     else:
         context = {}
