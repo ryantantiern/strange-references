@@ -23,6 +23,7 @@ html, body {
     height: 100%;
     top: 100vh;
     overflow-x: auto;
+    overflow-y: hidden;
 }
 
 #about-us-title, #about-us-text {
