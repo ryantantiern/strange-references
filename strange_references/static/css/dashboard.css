@@ -1,0 +1,21 @@
+#reference-list{
+    list-style-type: none;
+    padding: 10px;
+}
+
+.card {
+    padding: 15px;
+    border: 1px solid blue;
+    border-radius: 5px;
+}
+.card-title{
+    color: #3c4aff;
+}
+.card-footer{
+    color: #636363;
+}
+hr{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 1px solid black;
+}
