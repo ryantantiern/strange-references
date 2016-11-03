@@ -84,6 +84,7 @@ def register(request):
         }
         return render(request, 'strange_references/authenticated.html', context)
 
+@csrf_exempt
 def hook(request): 
     if request.method != 'POST':
         return HttpResponse(status=404)
