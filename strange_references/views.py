@@ -8,14 +8,12 @@ from django.template.context import RequestContext
 from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-<<<<<<< HEAD
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
-=======
+
 from django.views.decorators.csrf import csrf_exempt
 import subprocess
 import hmac, hashlib
->>>>>>> hooklistener
 
 from .models import Reference
 
