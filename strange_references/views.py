@@ -14,6 +14,7 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 import subprocess
 import hmac, hashlib
+import os
 
 from .models import Reference
 
@@ -146,6 +147,12 @@ def hook(request):
 
     if event == "push":
         # Check for branch and run deployment script
-        process = subprocess.call(['/home/ec2-user/s-ref/deploy.sh'], shell=True)
+        parsed_json = json.loads(content)
+        branch = parsed_json['ref'].split("/")[2] # format: refs/heads/master
+        if os.environ['DEPLOY_TYPE'] == "production" and branch == 'master':
+            process = subprocess.call(['/home/ec2-user/s-ref/deploy.sh'], shell=True)
+        else:
+            process = subprocess.call(['/home/ec2-user/s-ref/deploy.sh'], shell=True)
+        
 
     return HttpResponse(status=200)
