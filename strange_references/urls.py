@@ -16,5 +16,5 @@ urlpatterns = [
     url(r'^register$', views.register, name = 'register'),
     url(r'^logout$', views.logout_account, name='logout'),
 	url(r'^hook$', views.hook, name='hook'),
-	#url(r'', views.login, name='login')
+	url(r'', views.login, name='login')
 ]
