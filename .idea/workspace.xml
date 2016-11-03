@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="78e7c83a-3adf-4b87-8080-34fca57e1410" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/strange_references/static/css/dashboard.css" afterPath="$PROJECT_DIR$/strange_references/static/css/dashboard.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/strange_references/static/css/main.css" afterPath="$PROJECT_DIR$/strange_references/static/css/main.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/strange_references/templates/strange_references/dashboard.html" afterPath="$PROJECT_DIR$/strange_references/templates/strange_references/dashboard.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/strange_references/templates/strange_references/login.html" afterPath="$PROJECT_DIR$/strange_references/templates/strange_references/login.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/strange_references/urls.py" afterPath="$PROJECT_DIR$/strange_references/urls.py" />
-    </list>
+    <list default="true" id="78e7c83a-3adf-4b87-8080-34fca57e1410" name="Default" comment="" />
     <ignored path="strange-references.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -34,12 +28,13 @@
               <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
+                <marker date="1478198030020" expanded="true" signature="101:872" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="login.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="login.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/strange_references/templates/strange_references/login.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="242">
@@ -70,11 +65,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/strange_references/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="200">
-              <caret line="37" column="61" selection-start-line="37" selection-start-column="61" selection-end-line="37" selection-end-column="61" />
+            <state relative-caret-position="775">
+              <caret line="43" column="37" selection-start-line="43" selection-start-column="37" selection-end-line="43" selection-end-column="37" />
               <folding />
             </state>
           </provider>
@@ -737,6 +732,7 @@
           <caret line="11" column="1" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
+            <marker date="1478198030020" expanded="true" signature="101:872" ph="..." />
           </folding>
         </state>
       </provider>
@@ -814,6 +810,7 @@
           <caret line="11" column="1" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
+            <marker date="1478198030020" expanded="true" signature="101:872" ph="..." />
           </folding>
         </state>
       </provider>
@@ -869,6 +866,7 @@
           <caret line="8" column="56" selection-start-line="8" selection-start-column="56" selection-end-line="8" selection-end-column="56" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
+            <marker date="1478198030020" expanded="true" signature="101:872" ph="..." />
           </folding>
         </state>
       </provider>
@@ -914,6 +912,7 @@
           <caret line="9" column="54" selection-start-line="9" selection-start-column="54" selection-end-line="9" selection-end-column="54" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
+            <marker date="1478198030020" expanded="true" signature="101:872" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1022,6 +1021,7 @@
           <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
+            <marker date="1478198030020" expanded="true" signature="101:872" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1044,14 +1044,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
           <caret line="9" column="8" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/strange_references/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="37" column="61" selection-start-line="37" selection-start-column="61" selection-end-line="37" selection-end-column="61" />
           <folding />
         </state>
       </provider>
@@ -1096,6 +1088,14 @@
             <element signature="n#style#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#img#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/strange_references/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="775">
+          <caret line="43" column="37" selection-start-line="43" selection-start-column="37" selection-end-line="43" selection-end-column="37" />
+          <folding />
         </state>
       </provider>
     </entry>
