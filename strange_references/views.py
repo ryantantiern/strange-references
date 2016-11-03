@@ -40,7 +40,7 @@ def authenticate(request):
 	# Prevents direct access to URL
     if username is None or password is None:
 		return HttpResponseRedirect('login')
-    else:        
+    else:
 	    user = auth.authenticate(username=username, password=password)
 	    if user is not None:
 	        auth.login(request, user)
@@ -153,13 +153,13 @@ def hook(request):
         #process = subprocess.call(['/home/ec2-user/s-ref/deploy.sh'], shell=True)
         parsed_json = json.loads(body)
         branch = parsed_json['ref'].split("/")[2] # format: refs/heads/master
-        
+
         with open('/home/ec2-user/s-ref/deploy_type.env') as f:
             deploy_type = f.read()
-            
+
             with open("/home/ec2-user/s-ref/logme.txt", "w") as myfile:
                 myfile.write("PUSH: branch: " + branch + " deploy_type: " + deploy_type)
-            
+
             if (deploy_type.find("production") > -1 and branch.find("master") > -1):
                 process = subprocess.call(['/home/ec2-user/s-ref/deploy.sh'], shell=True)
             elif (deploy_type.find("production") < 0 and branch.find("staging") > -1):

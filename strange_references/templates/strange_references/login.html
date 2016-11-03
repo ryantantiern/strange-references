@@ -30,14 +30,16 @@
 					$('#form').attr("action", "{% url 'strange_references:register' %}");
 					$('#login-btn').text('Register');
 					$('#login-title').text('Register');
-                    $('#register-btn').text('Back to Log In')
+					$('#register-prompt').text('Are you an existing user?');
+                    $('#register-btn').text('Back to Log In');
 					reg=true;
                 }
                 else {
                     $('#form').attr("action", "{% url 'strange_references:authenticate' %}");
                     $('#login-btn').text('Log In');
                     $('#login-title').text('Log In');
-                    $('#register-btn').text('Register')
+					$('#register-prompt').text('Don\'t have an account?');
+                    $('#register-btn').text('Register');
                     reg=false;
                 }
 		}
@@ -45,12 +47,10 @@
 		function aboutScroll() {
 			if (scroll == false) {
 				window.scrollTo(0,window.innerHeight);
-                    document.getElementById('about-us-link').text = 'Log in';
 				scroll = true;
 			}
 			else {
 				window.scrollTo(0,0);
-                    document.getElementById('about-us-link').text = 'About Us';
 				scroll = false;
 			}
 
@@ -59,7 +59,7 @@
 </head>
 
     <body>
-        <h1 id="login-banner" style=" font-family: 'Lobster', cursive;">Strange References</h1>
+        <h1 id="login-banner" style=" font-family: 'Lobster', cursive;"><a id="easter-egg" onclick="aboutScroll()" style=" text-decoration:none; color:black;">Strange References</a></h1>
         <div class="container">
             <div class="row">
                 <div class="col-sm-8 col-sm-offset-2">
@@ -141,7 +141,7 @@
                         </form>
                     </div>
                     <p style="text-align: center; color:white;">
-                        Don't have an account?
+                        <span id="register-prompt">Don't have an account?</span>
                         <a style="color: white; text-decoration: underline;" id="register-btn" data-toggle="collapse" data-target="#collapse-register" onclick="registerToggle()" >Register</a>
                     </p>
                 </div>
@@ -150,15 +150,18 @@
 
        <!-- <footer class="navbar-fixed-bottom" id="footer-banner"> -->
        	<div class="navbar-fixed-bottom" id="footer-banner" style="margin-top: 50px;">
-       		<a id="about-us-link" onclick="aboutScroll()">About Us</a>
+       		<a id="easter-egg" onclick="aboutScroll()" style="color: black; font-size:20px; border: 1px solid black; padding:5px;">EASTER EGG! Click to go back to login page.</a>
        	</div>
 
        <!-- </footer> -->
 
        <div id="about-us">
-       	<h1 id="about-us-title">Group H</h1>
+       	<h1 id="about-us-title">Scenario Week 3: Group H</h1>
        	<div class="container">
-       		<p id="about-us-text">IEP group doing a project together</p>
+			<div id="about-us-text">
+				<p style="font-weight:bold; text-decoration:underline">Gunawan's Chicken Recipe</p>
+				<p>Ingredients: Chicken Breast, Pork Rib, Ginger, Egg, Salt, Sugar, Light Soy Sauce, Dark Soy Sauce, <strong>Coke</strong>.</p>
+			</div>
        	</div>
        	<img id='about-img' style="width: 100vw" src="{% static 'img/group-photo.jpeg' %}"/>
        </div>
