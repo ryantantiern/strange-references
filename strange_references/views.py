@@ -9,14 +9,19 @@ from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.utils import timezone
+from django.contrib.auth.decorators import login_required
 
 from .models import Reference
 
 def login(request):
-	template = loader.get_template('strange_references/login.html')
-	context = {}
-	return HttpResponse(template.render(context, request))
+	if request.user.is_authenticated:
+		return HttpResponseRedirect('dashboard')
+	else:
+		template = loader.get_template('strange_references/login.html')
+		context = {}
+		return HttpResponse(template.render(context, request))
 
+@login_required
 def logout_account(request):
 	logout(request)
 	return HttpResponseRedirect('login')
@@ -26,20 +31,27 @@ def authenticate(request):
     username = request.POST.get('uname')
     password = request.POST.get('pwd')
 
-    user = auth.authenticate(username=username, password=password)
-
-    if user is not None:
-        auth.login(request, user)
-        return HttpResponseRedirect('dashboard')
+	# Prevents direct access to URL
+    if username is None or password is None:
+		return HttpResponseRedirect('login')
     else:
-        context = {}
-        return render(request, 'strange_references/invalid.html', context)
+	    user = auth.authenticate(username=username, password=password)
+	    if user is not None:
+	        auth.login(request, user)
+	        return HttpResponseRedirect('dashboard')
+	    else:
+	        context = {}
+	        return render(request, 'strange_references/invalid.html', context)
 
 def register(request):
     username = request.POST.get('uname')
     password = request.POST.get('pwd')
     password1 = request.POST.get('pwd2')
     email = request.POST.get('email')
+
+	# Prevents direct access to URL
+    if username is None or password is None or email is None:
+		return HttpResponseRedirect('login')
 
     # if email is already used
     if User.objects.filter(email=email).exists():
@@ -62,6 +74,7 @@ def register(request):
         auth.login(request,user)
         return HttpResponseRedirect('dashboard')
 
+@login_required
 def dashboard(request):
 	# Retrieve references posted by logged-in user
     references_object_array = Reference.objects.filter(user_id=request.user.id).order_by('-last_modified')
@@ -73,6 +86,7 @@ def dashboard(request):
     }
     return render(request, 'strange_references/dashboard.html', context)
 
+@login_required
 def add_reference(request):
     user_id1 = request.user.id
     title1 = request.POST.get('title')
@@ -83,6 +97,7 @@ def add_reference(request):
     r.save()
     return HttpResponseRedirect('/dashboard')
 
+@login_required
 def save_reference(request, reference_id):
     title = request.POST.get('title')
     note = request.POST.get('note')
@@ -95,12 +110,14 @@ def save_reference(request, reference_id):
     r.save()
     return HttpResponseRedirect('/dashboard')
 
+@login_required
 def delete_reference(request, reference_id):
 	r = Reference.objects.get(pk=reference_id)
 	if r is not None:
 		r.delete()
 	return HttpResponseRedirect('/dashboard')
 
+@login_required
 def edit_form(request, reference_id):
     r = Reference.objects.get(pk=reference_id)
     context = {
@@ -108,5 +125,6 @@ def edit_form(request, reference_id):
     }
     return render(request, 'strange_references/edit_reference.html', context)
 
+@login_required
 def add_form(request):
     return render(request, 'strange_references/add_reference.html', {})
