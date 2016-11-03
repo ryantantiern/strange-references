@@ -149,7 +149,7 @@ def hook(request):
 
     if event == "push":
         # Check for branch and run deployment script
-        with open("/home/ec2-user/logme.txt", "w") as myfile:
+        with open("/home/ec2-user/s-ref/logme.txt", "w") as myfile:
             myfile.write("got push event")
         process = subprocess.call(['/home/ec2-user/s-ref/deploy.sh'], shell=True)
         parsed_json = json.loads(body)
