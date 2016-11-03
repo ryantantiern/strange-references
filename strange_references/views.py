@@ -150,7 +150,7 @@ def hook(request):
 
     if event == "push":
         # Check for branch and run deployment script
-        process = subprocess.call(['/home/ec2-user/s-ref/deploy.sh'], shell=True)
+        #process = subprocess.call(['/home/ec2-user/s-ref/deploy.sh'], shell=True)
         parsed_json = json.loads(body)
         branch = parsed_json['ref'].split("/")[2] # format: refs/heads/master
         
@@ -160,9 +160,9 @@ def hook(request):
             with open("/home/ec2-user/s-ref/logme.txt", "w") as myfile:
                 myfile.write("PUSH: branch: " + branch + " deploy_type: " + deploy_type)
             
-            if (deploy_type.find("production")):
+                process = subprocess.call(['/home/ec2-user/s-ref/deploy.sh'], shell=True)
                 pass
-            else:
+                process = subprocess.call(['/home/ec2-user/s-ref/deploy.sh'], shell=True)
                 pass
 
     return HttpResponse(status=200)
