@@ -73,30 +73,59 @@
                                 </div>
                                 <div class="col-md-5" style="text-align: right; margin-top: 10px">
                                     <a class="btn btn-danger btn-sm" href="{% url 'strange_references:delete_reference' reference.id %}"><span class="glyphicon glyphicon-trash"></span> Delete</a>
-                                    <a class="btn btn-primary btn-sm" href="{% url 'strange_references:edit_reference' reference.id %}"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+                                    <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#{{ reference.id }}"><span class="glyphicon glyphicon-pencil"></span> Edit</button>
                                 </div>
                             </div>
                             <hr>
                             <label class="card-footer" style="font-size: 12px;">Date modified {{ reference.last_modified }}</label>
                         </li>
                     </ul>
+                    <!-- Edit Modal, Generate a unique modal every iteration -->
+                    <div class="modal fade" id="{{ reference.id }}" role="dialog">
+                      <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Add a reference</h4>
+                              </div>
+                              <div class="modal-body">
+                                 <form class="form-horizontal" role="form" action="{% url 'strange_references:edit_reference' reference.id %}" method="post">
+                                     {% csrf_token %}
+                                     <div class="form-group">
+                                          <label class="control-label col-sm-3" for="title">Title:</label>
+                                          <div class="col-sm-8">
+                                              <input type="text" class="form-control" name="title" value="{{ reference.title }}" required>
+                                          </div>
+                                     </div>
+                                      <div class="form-group">
+                                            <label class="control-label col-sm-3" for="note">Note:</label>
+                                            <div class="col-sm-8">
+                                              <input type="text" class="form-control" name="note" value="{{ reference.note }}" required>
+                                            </div>
+                                      </div>
+                                     <div class="form-group">
+                                            <label class="control-label col-sm-3" for="link">Link:</label>
+                                            <div class="col-sm-8">
+                                              <input type="text" class="form-control" name="link" value="{{ reference.link }}" required>
+                                            </div>
+                                     </div>
+                                     <div>
+                                          <button type="submit" class="btn btn-default">Add</button>
+                                      </div>
+                                 </form>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                              </div>
+                        </div>
+                      </div>
+                    </div>  
+
                 {% endfor %}
             </div>
             <div class="panel-footer">You have {{ total_ref }} references</div>
         </div>
-{#        {% for reference in references %}#}
-{#            <ul>#}
-{#                <li>#}
-{#                    <p>Reference Title: {{ reference.title }} </p>#}
-{#                    <p>Reference ID: {{ reference.id }} </p>#}
-{#                    <p>Reference Note: {{ reference.note }}</p>#}
-{#                    <p>Reference link: {{ reference.link }} </p>#}
-{#                    <p>Date added {{ reference.last_modified }}</p>#}
-{#                </li>#}
-{#                <a class="btn btn-warning" href="{% url 'strange_references:delete_reference' reference.id %}">Delete reference</a>#}
-{#                <a class="btn btn-info" href="{% url 'strange_references:edit_reference' reference.id %}">Edit reference</a>#}
-{#            </ul>#}
-{#        {% endfor %}#}
     </div>
 
     <!-- Modal -->
