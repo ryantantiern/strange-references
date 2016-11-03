@@ -7,6 +7,7 @@ from django.template.context import RequestContext
 from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+import subprocess
 
 from .models import Reference
 # Create your views here.
@@ -95,7 +96,7 @@ def hook(request):
 
     if event == "push":
         # Check for branch and run deployment script
-        print("Got push!")
+        process = subprocess.call(['/home/ec2-user/deploy.sh'], shell=True)
 
     return HttpResponse(status=200)
 
