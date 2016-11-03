@@ -90,7 +90,7 @@ def hook(request):
 
     body = request.body
     GOOD_SIG = "sha1=" + hmac.new("strange1", msg=body, digestmod=hashlib.sha1())
-    if !hmac.compare_digest(request.META['X-Hub-Signature'], GOOD_SIG.hexdigest())
+    if not (hmac.compare_digest(request.META['X-Hub-Signature'], GOOD_SIG.hexdigest()))
         return HttpResponse(status=403)
     event = request.META['X-GitHub-Event']
 
