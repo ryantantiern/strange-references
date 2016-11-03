@@ -90,7 +90,8 @@ def hook(request):
         return HttpResponse(status=403)
     event = request.META['X-GitHub-Event']
 
-    print(request.POST)
+    with open('/home/ec2-user/python_log', 'w') as logfile:
+        logfile.write(request.POST)
 
     if event == "push":
         # Check for branch and run deployment script
