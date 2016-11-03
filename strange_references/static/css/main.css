@@ -3,7 +3,6 @@ html, body {
     height: 100%;
 }
 
-
 #login-banner {
     margin-top:0px ;
     padding: 10px;
@@ -38,9 +37,6 @@ html, body {
     text-align: center;
     color: black;
 }
-
-
-
 
 #about-img {
     position: absolute;
