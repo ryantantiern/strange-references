@@ -101,10 +101,7 @@ def add_reference(request):
     last_modified1 = timezone.now()
     r = Reference(title=title1, note=note1, link=link1, last_modified=last_modified1, user_id=user_id1)
     r.save()
-    context = {
-        'succ_msg': "Reference added !"
-    }
-    return HttpResponse('hello')
+    return dashboard(request)
 
 def save_reference(request, reference_id):
     title = request.POST.get('title')
@@ -129,5 +126,9 @@ def edit_form(request, reference_id):
     context = {
         'reference':r,
     }
-    return render(request, 'strange_references/edit_references.html', context )
+    return render(request, 'strange_references/edit_reference.html', context)
+
+def add_form(request):
+    return render(request, 'strange_references/add_reference.html', {})
+
 
