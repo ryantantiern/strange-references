@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="78e7c83a-3adf-4b87-8080-34fca57e1410" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/strange_references/static/hover/hover.css" afterPath="$PROJECT_DIR$/strange_references/static/hover/hover.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/strange_references/templates/strange_references/dashboard.html" afterPath="$PROJECT_DIR$/strange_references/templates/strange_references/dashboard.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/strange_references/urls.py" afterPath="$PROJECT_DIR$/strange_references/urls.py" />
     </list>
     <ignored path="strange-references.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -24,7 +24,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
-      <file leaf-file-name="urls.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/strange_references/urls.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="250">
@@ -73,10 +73,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="edit_reference.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="edit_reference.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/strange_references/templates/strange_references/edit_reference.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
+            <state relative-caret-position="363">
               <caret line="30" column="7" selection-start-line="30" selection-start-column="7" selection-end-line="30" selection-end-column="7" />
               <folding />
             </state>
@@ -96,16 +96,16 @@
       <file leaf-file-name="dashboard.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/strange_references/templates/strange_references/dashboard.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="588">
-              <caret line="109" column="105" selection-start-line="109" selection-start-column="105" selection-end-line="109" selection-end-column="105" />
+            <state relative-caret-position="25">
+              <caret line="61" column="118" selection-start-line="61" selection-start-column="118" selection-end-line="61" selection-end-column="118" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#body#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#label#0;n#div#0;n#div#0;n#div#0;n#body#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#li#0;n#ul#0;n#div#1;n#div#0;n#div#0;n#body#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#1;n#div#0;n#li#0;n#ul#0;n#div#1;n#div#0;n#div#0;n#body#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#label#0;n#li#0;n#ul#0;n#div#1;n#div#0;n#div#0;n#body#0;n#!!top" expanded="true" />
-                <element signature="e#4637#4644#0#HTML" expanded="true" />
-                <element signature="e#7459#7466#0#HTML" expanded="true" />
+                <element signature="e#4640#4647#0#HTML" expanded="true" />
+                <element signature="e#7462#7469#0#HTML" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -170,8 +170,8 @@
         <option value="$PROJECT_DIR$/strange_references/views.py" />
         <option value="$PROJECT_DIR$/strange_references/static/css/main.css" />
         <option value="$PROJECT_DIR$/strange_references/static/css/dashboard.css" />
-        <option value="$PROJECT_DIR$/strange_references/templates/strange_references/dashboard.html" />
         <option value="$PROJECT_DIR$/strange_references/urls.py" />
+        <option value="$PROJECT_DIR$/strange_references/templates/strange_references/dashboard.html" />
       </list>
     </option>
   </component>
@@ -607,7 +607,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-11" y="-11" width="1942" height="1042" extended-state="6" />
+    <frame x="-11" y="-11" width="1942" height="1042" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15364583" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -1034,14 +1034,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/strange_references/templates/strange_references/edit_reference.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="30" column="7" selection-start-line="30" selection-start-column="7" selection-end-line="30" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/strange_references/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-175">
@@ -1058,22 +1050,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/strange_references/templates/strange_references/dashboard.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="588">
-          <caret line="109" column="105" selection-start-line="109" selection-start-column="105" selection-end-line="109" selection-end-column="105" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#body#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#label#0;n#div#0;n#div#0;n#div#0;n#body#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#li#0;n#ul#0;n#div#1;n#div#0;n#div#0;n#body#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#li#0;n#ul#0;n#div#1;n#div#0;n#div#0;n#body#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#label#0;n#li#0;n#ul#0;n#div#1;n#div#0;n#div#0;n#body#0;n#!!top" expanded="true" />
-            <element signature="e#4637#4644#0#HTML" expanded="true" />
-            <element signature="e#7459#7466#0#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/strange_references/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="250">
@@ -1081,6 +1057,30 @@
           <folding>
             <element signature="e#0#32#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/strange_references/templates/strange_references/dashboard.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="25">
+          <caret line="61" column="118" selection-start-line="61" selection-start-column="118" selection-end-line="61" selection-end-column="118" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#body#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#0;n#div#0;n#div#0;n#div#0;n#body#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#li#0;n#ul#0;n#div#1;n#div#0;n#div#0;n#body#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#li#0;n#ul#0;n#div#1;n#div#0;n#div#0;n#body#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#0;n#li#0;n#ul#0;n#div#1;n#div#0;n#div#0;n#body#0;n#!!top" expanded="true" />
+            <element signature="e#4640#4647#0#HTML" expanded="true" />
+            <element signature="e#7462#7469#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/strange_references/templates/strange_references/edit_reference.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="363">
+          <caret line="30" column="7" selection-start-line="30" selection-start-column="7" selection-end-line="30" selection-end-column="7" />
+          <folding />
         </state>
       </provider>
     </entry>
