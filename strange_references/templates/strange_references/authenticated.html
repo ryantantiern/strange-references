@@ -1,0 +1,13 @@
+<h1>login authenticated</h1>
+
+<p>username is: {{ user.username }}</p>
+<p>password is: You dont show passwords!!</p>
+<p>userID is: {{ user.id }}</p>
+{% for reference in references %}
+    <p>
+        {{ reference.title }}
+        {{ reference.user_id }}
+    </p>
+{% endfor %}
+
+<a class="btn btn-primary" href="{% url 'strange_references:logout'%}">Logout</a>

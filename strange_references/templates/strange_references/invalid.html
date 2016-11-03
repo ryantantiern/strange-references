@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		{% load staticfiles %}
+
+		<title>Login</title>
+        <!-- Bootstrap CSS and JS-->
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+		<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+        <!-- Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Asap|Roboto|Special+Elite" rel="stylesheet">
+
+		<style type="text/css">
+			body {
+				background: url(static/img/background.jpg) no-repeat center center fixed;
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
+                -o-background-size: cover;
+                background-size: cover;
+			}
+		</style>
+
+		<script type="text/javascript">
+			var scroll = false;
+			function aboutScroll() {
+				if (scroll == false) {
+					window.scrollTo(0,window.innerHeight);
+                    document.getElementById('about-us-link').innerhtml = 'Login';
+					scroll = true;
+				}
+				else {
+					window.scrollTo(0,0);
+                    document.getElementById('about-us-link').innerhtml = 'About Us';
+					scroll = false;
+				}
+					
+			}
+		</script>
+
+</head>
+
+    <body>
+        <h1 id="login-banner">Strange References</h1>
+        <div class="container">
+            <div class="alert alert-danger" style="display: table; width: 100%">
+            	<div  class="" style=" display: table-cell; vertical-align: middle;">
+            		<strong>User Invalid!</strong><span> Please enter correct login details or register an account</span>
+            	</div>
+            	<div class="" style=" float: right;display: table-cell; vertical-align: middle;">
+                    <form class="form-horizontal" action="{% url 'strange_references:login' %}" method="link">
+                        <button href="{% url 'strange_references:login' %}" type="submit" id="log-in-redirect-btn" class="btn btn-info" >Log In</button>          
+                    </form>
+	            </div>
+
+            </div>
+        </div>
+                 
+        <!-- <footer class="navbar-fixed-bottom" id="footer-banner"> -->
+    	<div class="navbar-fixed-bottom" id="footer-banner">
+    		<a id="about-us-link" onclick="aboutScroll()"><p>About Us</p></a>
+    	</div>
+
+        <!-- </footer> -->
+
+        <div id="about-us">
+        	<h1 id="about-us-title">Group H</h1>
+        	<div class="container">
+        		<p id="about-us-text">IEP group doing a project together</p>
+        	</div>
+        	<img class="img-responsive center-block" style="width: 100vw" src="{% static 'img/group-photo.jpeg' %}"/>
+        </div>
+
+
+    </body>
+</html>
