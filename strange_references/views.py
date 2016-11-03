@@ -11,16 +11,6 @@ from django.urls import reverse
 from django.utils import timezone
 
 from .models import Reference
-# Create your views here.
-
-
-# class User(object):
-# 	uname = ""
-# 	pwd = ""
-#
-# 	def __init__(self, username, password):
-# 		self.uname = username
-# 		self.pwd = password
 
 def login(request):
 	template = loader.get_template('strange_references/login.html')
@@ -29,14 +19,10 @@ def login(request):
 
 def logout_account(request):
 	logout(request)
-	template = loader.get_template('strange_references/login.html')
-	context = {}
-	return HttpResponse(template.render(context, request))
+	return HttpResponseRedirect('login')
 
 
 def authenticate(request):
-    # template = loader.get_template('strange_references/dashboard.html')
-
     username = request.POST.get('uname')
     password = request.POST.get('pwd')
 
@@ -44,15 +30,10 @@ def authenticate(request):
 
     if user is not None:
         auth.login(request, user)
-        return dashboard(request)
-
+        return HttpResponseRedirect('dashboard')
     else:
         context = {}
         return render(request, 'strange_references/invalid.html', context)
-
-
-    #
-    # return HttpResponse(template.render(context))
 
 def register(request):
     username = request.POST.get('uname')
@@ -79,10 +60,7 @@ def register(request):
         user.last_name = request.POST.get('lname')
         user.save()
         auth.login(request,user)
-        context = {
-            'user':request.user,
-        }
-        return render(request, 'strange_references/authenticated.html', context)
+        return HttpResponseRedirect('dashboard')
 
 def dashboard(request):
 	# Retrieve references posted by logged-in user
@@ -101,7 +79,7 @@ def add_reference(request):
     last_modified1 = timezone.now()
     r = Reference(title=title1, note=note1, link=link1, last_modified=last_modified1, user_id=user_id1)
     r.save()
-    return dashboard(request)
+    return HttpResponseRedirect('/dashboard')
 
 def save_reference(request, reference_id):
     title = request.POST.get('title')
@@ -113,13 +91,13 @@ def save_reference(request, reference_id):
     r.link = link
     r.last_modified = timezone.now()
     r.save()
-    return dashboard(request)
+    return HttpResponseRedirect('/dashboard')
 
 def delete_reference(request, reference_id):
 	r = Reference.objects.get(pk=reference_id)
 	if r is not None:
 		r.delete()
-	return dashboard(request)
+	return HttpResponseRedirect('/dashboard')
 
 def edit_form(request, reference_id):
     r = Reference.objects.get(pk=reference_id)
@@ -130,5 +108,3 @@ def edit_form(request, reference_id):
 
 def add_form(request):
     return render(request, 'strange_references/add_reference.html', {})
-
-
