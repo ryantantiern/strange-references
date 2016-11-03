@@ -14,6 +14,8 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 import subprocess
 import hmac, hashlib
+import os
+import json
 
 from .models import Reference
 
@@ -38,14 +40,16 @@ def authenticate(request):
 	# Prevents direct access to URL
     if username is None or password is None:
 		return HttpResponseRedirect('login')
-    else:
+    else:        
 	    user = auth.authenticate(username=username, password=password)
 	    if user is not None:
 	        auth.login(request, user)
 	        return HttpResponseRedirect('dashboard')
 	    else:
-	        context = {}
-	        return render(request, 'strange_references/invalid.html', context)
+	        context = {
+            'error_msg':"Username or password is incorrect"
+            }
+            return render(request, 'strange_references/login.html', context)
 
 def register(request):
     username = request.POST.get('uname')
@@ -62,11 +66,11 @@ def register(request):
         context = {
             'error_msg':'Email already in use',
         }
-        return render(request, 'strange_references/register.html', context)
+        return render(request, 'strange_references/login.html', context)
     # if passwords do not match
     elif password != password1:
         context = {
-            'pwd_error': 'The two passwords entered did not match please try registering again',
+            'error_msg': 'The two passwords entered did not match please try registering again',
         }
         return render(request,'strange_references/login.html', context)
     # otherwise add user to db
@@ -92,12 +96,12 @@ def dashboard(request):
 
 @login_required
 def add_reference(request):
-    user_id1 = request.user.id
-    title1 = request.POST.get('title')
-    note1 = request.POST.get('note')
-    link1 = request.POST.get('link')
-    last_modified1 = timezone.now()
-    r = Reference(title=title1, note=note1, link=link1, last_modified=last_modified1, user_id=user_id1)
+    user_id = request.user.id
+    title = request.POST.get('title')
+    note = request.POST.get('note')
+    link = request.POST.get('link')
+    last_modified = timezone.now()
+    r = Reference(title=title, note=note, link=link, last_modified=last_modified, user_id=user_id)
     r.save()
     return HttpResponseRedirect('/dashboard')
 
@@ -134,7 +138,7 @@ def add_form(request):
     return render(request, 'strange_references/add_reference.html', {})
 
 @csrf_exempt
-def hook(request): 
+def hook(request):
     if request.method != 'POST':
         return HttpResponse(status=404)
 
@@ -146,6 +150,19 @@ def hook(request):
 
     if event == "push":
         # Check for branch and run deployment script
-        process = subprocess.call(['/home/ec2-user/s-ref/deploy.sh'], shell=True)
+        #process = subprocess.call(['/home/ec2-user/s-ref/deploy.sh'], shell=True)
+        parsed_json = json.loads(body)
+        branch = parsed_json['ref'].split("/")[2] # format: refs/heads/master
+        
+        with open('/home/ec2-user/s-ref/deploy_type.env') as f:
+            deploy_type = f.read()
+            
+            with open("/home/ec2-user/s-ref/logme.txt", "w") as myfile:
+                myfile.write("PUSH: branch: " + branch + " deploy_type: " + deploy_type)
+            
+            if (deploy_type.find("production") > -1 and branch.find("master") > -1):
+                process = subprocess.call(['/home/ec2-user/s-ref/deploy.sh'], shell=True)
+            elif (deploy_type.find("production") < 0 and branch.find("staging") > -1):
+                process = subprocess.call(['/home/ec2-user/s-ref/deploy.sh'], shell=True)
 
     return HttpResponse(status=200)

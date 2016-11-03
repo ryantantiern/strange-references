@@ -10,10 +10,19 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'css/dashboard.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'hover/hover.css' %}">
 
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
 
 	<style type="text/css">
 	    .navbar-inverse{
             border-radius:0;
+        }
+        .modal-header{
+            background-color: #428bca;
+            color: white;
+        }
+        .navbar-brand{
+            font-family: 'Lobster', cursive;
         }
 	</style>
 
@@ -43,41 +52,35 @@
                             <a href="{% url 'strange_references:logout' %}"><span class="glyphicon glyphicon-log-in"></span> Logout</a>
                         </li>
                     </ul>
-                    <!-- <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">{Name}
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Log Out</a></li>
-                    </ul> -->
                 </div>
             </div>
         </div>
     </nav>
 
     <div class="container">
-        <div class="panel panel-primary">
-            <div class="panel-heading" style="padding:25px;">
+        <div class="panel panel-default">
+            <div class="panel-heading" style="padding:15px 25px 15px 25px;">
                 <label style="font-size:16px;" class="pull-right">{{total_ref }} References</label>
 {#                <a class="btn btn-success" href="{% url 'strange_references:new_reference' %}">Add reference</a>#}
-                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Add Reference</button>
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-plus"></span> Add Reference</button>
             </div>
             <div class="panel-body">
                 {% for reference in references %}
                     <ul id="reference-list">
                         <li class="card hvr-border-fade" style="width: 100%">
                             <div class="row">
-                                <div class="col-md-7">
+                                <div class="col-md-9">
                                     <label class="lead card-title"> {{ reference.title }} </label>
                                     <p>{{ reference.note }}</p>
-                                    <label>Source: {{ reference.link }} </label>
+                                    <label>Source: </label>
+                                    <a href="{{ reference.link }}"> {{ reference.link }} </a>
                                 </div>
-                                <div class="col-md-5" style="text-align: right; margin-top: 10px">
-                                    <a class="btn btn-danger btn-sm" href="{% url 'strange_references:delete_reference' reference.id %}"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                                <div class="col-md-3" style="text-align: right; margin-top: 10px">
                                     <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#{{ reference.id }}"><span class="glyphicon glyphicon-pencil"></span> Edit</button>
+                                    <a class="btn btn-danger btn-sm" href="{% url 'strange_references:delete_reference' reference.id %}"><span class="glyphicon glyphicon-trash"></span> Delete</a>
                                 </div>
                             </div>
-                            <hr>
-                            <label class="card-footer" style="font-size: 12px;">Date modified {{ reference.last_modified }}</label>
+                            <label class="card-footer" style="font-size: 12px;">{{ reference.last_modified }}</label>
                         </li>
                     </ul>
                     <!-- Edit Modal, Generate a unique modal every iteration -->
@@ -87,7 +90,7 @@
                         <div class="modal-content">
                               <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title">Add a reference</h4>
+                                <h4 class="modal-title" style="text-align: center;">Edit your reference</h4>
                               </div>
                               <div class="modal-body">
                                  <form class="form-horizontal" role="form" action="{% url 'strange_references:edit_reference' reference.id %}" method="post">
@@ -101,7 +104,7 @@
                                       <div class="form-group">
                                             <label class="control-label col-sm-3" for="note">Note:</label>
                                             <div class="col-sm-8">
-                                              <input type="text" class="form-control" name="note" value="{{ reference.note }}" required>
+                                              <textarea class="form-control" name="note" rows ="5">{{ reference.note }}</textarea>
                                             </div>
                                       </div>
                                      <div class="form-group">
@@ -110,13 +113,10 @@
                                               <input type="text" class="form-control" name="link" value="{{ reference.link }}" required>
                                             </div>
                                      </div>
-                                     <div>
-                                          <button type="submit" class="btn btn-default">Add</button>
-                                      </div>
+                                     <div style="text-align: center;">
+                                          <button type="submit" class="btn btn-info">Save</button>
+                                     </div>
                                  </form>
-                              </div>
-                              <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                               </div>
                         </div>
                       </div>
@@ -124,7 +124,7 @@
 
                 {% endfor %}
             </div>
-            <div class="panel-footer">You have {{ total_ref }} references</div>
+            <div class="panel-footer"><div class="container">You have {{ total_ref }} references</div></div>
         </div>
     </div>
 
@@ -135,7 +135,7 @@
           <div class="modal-content">
                 <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <h4 class="modal-title">Add a reference</h4>
+                  <h4 class="modal-title" style="text-align: center;">Add a reference</h4>
                 </div>
                 <div class="modal-body">
                    <form class="form-horizontal" role="form" action="{% url 'strange_references:add_reference' %}" method="post">
@@ -143,75 +143,29 @@
                        <div class="form-group">
                             <label class="control-label col-sm-3" for="title">Title:</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" name="title" placeholder="Enter username" required>
+                                <input type="text" class="form-control" name="title" placeholder="Enter Title of Reference" required>
                             </div>
                        </div>
                         <div class="form-group">
                               <label class="control-label col-sm-3" for="note">Note:</label>
                               <div class="col-sm-8">
-                                <input type="text" class="form-control" name="note" placeholder="Enter password" required>
+                                <textarea class="form-control" name="note" rows="5" placeholder="Enter any notes of remarks"></textarea>
                               </div>
                         </div>
                        <div class="form-group">
                               <label class="control-label col-sm-3" for="link">Link:</label>
                               <div class="col-sm-8">
-                                <input type="text" class="form-control" name="link" placeholder="Enter password" required>
+                                <input type="text" class="form-control" name="link" placeholder="Enter source of reference" required>
                               </div>
                        </div>
-                       <div>
-                            <button type="submit" class="btn btn-default">Add</button>
-                        </div>
+                       <p style="text-align: center;">
+                            <button type="submit" class="btn btn-info">Add</button>
+                       </p>
                    </form>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
           </div>
 
         </div>
       </div>
-{#        <div class="container">#}
-{#            <div class="row">#}
-{#                <div class="col-sm-2">#}
-{#                    <div class="dropdown pull-right" style="display: inline-block;">#}
-{#                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Sort by#}
-{#                            <span class="caret"></span>#}
-{#                        </button>#}
-{#                        <ul class="dropdown-menu">#}
-{#                            <li><a href="#">Title</a></li>#}
-{#                            <li><a href="#">Date</a></li>#}
-{#                            <li><a href="#">Link</a></li>#}
-{#                        </ul>#}
-{#                    </div>#}
-{#                </div>#}
-{##}
-{#                <div class="col-sm-2">#}
-{#                    <div class="dropdown pull-right" style="display: inline-block;">#}
-{#                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"># per page#}
-{#                            <span class="caret"></span>#}
-{#                        </button>#}
-{#                        <ul class="dropdown-menu">#}
-{#                            <li><a href="#">10</a></li>#}
-{#                            <li><a href="#">20</a></li>#}
-{#                            <li><a href="#">30</a></li>#}
-{#                        </ul>#}
-{#                    </div>#}
-{#                </div>#}
-{##}
-{#                <!-- middle break coloum -->#}
-{#                <div class="col-sm-6"></div>#}
-{##}
-{#                <div class="col-sm-2">#}
-{#                    <button class="btn btn-danger">Add reference</button>#}
-{#                </div>#}
-{##}
-{#            </div>#}
-{#        </div>#}
-
-        <!-- <footer class="page-footer">
-            <p>text</p>
-        </footer> -->
-    </nav>
-
 
 </body>

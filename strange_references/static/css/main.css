@@ -1,11 +1,39 @@
-#login-banner{
-    margin-top:0px ;
-    padding: 10px;
-    margin-bottom: 40px;
-    background: rgba(188,232,241,0.7);
-    text-align: center;
-    font-family: 'Asap', sans-serif;
-    font-family: 'Special Elite', cursive;
-    font-family: 'Roboto', sans-serif;
+html, body {
+    overflow: hidden;
+    height: 100%;
 }
 
+#login-banner {
+    margin-top:10px ;
+    padding: 10px;
+    margin-bottom: 40px;
+    text-align: center;
+    font-family: 'Lobster', cursive;
+}
+
+#footer-banner{
+    padding: 10px;
+    text-align: center;
+}
+
+#about-us {
+    position: absolute;
+    background: rgb(239, 191, 100);
+    width: 100vw;
+    height: 100%;
+    top: 100vh;
+    overflow-x: auto;
+}
+
+#about-us-title, #about-us-text {
+    text-align: center;
+    color: black;
+}
+
+#about-img {
+    position: absolute;
+}
+
+.alert {
+    padding: 20px;
+}
