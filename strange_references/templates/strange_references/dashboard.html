@@ -85,9 +85,9 @@
                     <p>Reference Note: {{ reference.note }}</p>
                     <p>Reference link: {{ reference.link }} </p>
                     <p>Date added {{ reference.last_modified }}</p>
-                    <a class="btn btn-warning" href="{% url 'strange_references:delete_reference' reference.id %}">Delete reference</a>
-                    <a class="btn btn-info" href="{% url 'strange_references:edit_referece' reference.id %}">Edit reference</a>
                 </li>
+                <a class="btn btn-warning" href="{% url 'strange_references:delete_reference' reference.id %}">Delete reference</a>
+                <button class="btn btn-info">Edit reference</button>
             </ul>
         {% endfor %}
     </div>
@@ -102,7 +102,7 @@
                   <h4 class="modal-title">Add a reference</h4>
                 </div>
                 <div class="modal-body">
-                   <form class="form-horizontal" action="{% url 'strange_references:add_reference' %}" method="post">
+                   <form class="form-horizontal" role="form" action="{% url 'strange_references:add_reference' %}" method="post">
                        {% csrf_token %}
                        <div class="form-group">
                             <label class="control-label col-sm-3" for="title">Title:</label>
@@ -173,6 +173,7 @@
         <!-- <footer class="page-footer">
             <p>text</p>
         </footer> -->
+    </nav>
 
 
 </body>
