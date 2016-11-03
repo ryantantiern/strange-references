@@ -7,32 +7,13 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/dashboard.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'hover/hover.css' %}">
 
 
 	<style type="text/css">
-	    .navbar-custom{
-            background:#3173B5;
-            color: #ffffff;
+	    .navbar-inverse{
             border-radius:0;
-        }
-        .navbar-custom .navbar-brand {
-            color:#ffffff;
-        }
-        .navbar-custom .navbar-nav > li > a {
-            color:#ffffff;
-        }
-        .navbar-custom .navbar-nav > .active > a,
-        .navbar-nav > .active > a:hover,
-        .navbar-nav > .active > a:focus {
-            color: #3173B5;
-            background-color:#ffffff;
-        }
-        .navbar-toggle{
-            border: 1px solid white;
-        }
-        .navbar-custom .navbar-toggle .icon-bar{
-            background-color: white !important;
         }
 	</style>
 
@@ -42,7 +23,7 @@
 
 </head>
 <body>
-    <nav class="navbar navbar-custom">
+    <nav class="navbar navbar-inverse">
         <div class="container">
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -72,24 +53,49 @@
             </div>
         </div>
     </nav>
-    {% if succ_msg %}
-        <p>{{ succ_msg }}</p>
-    {% endif %}
-    <a class="btn btn-primary" href="{% url 'strange_references:new_reference' %}">Add reference</a>
+
     <div class="container">
-        {% for reference in references %}
-            <ul>
-                <li>
-                    <p>Reference Title: {{ reference.title }} </p>
-                    <p>Reference ID: {{ reference.id }} </p>
-                    <p>Reference Note: {{ reference.note }}</p>
-                    <p>Reference link: {{ reference.link }} </p>
-                    <p>Date added {{ reference.last_modified }}</p>
-                </li>
-                <a class="btn btn-warning" href="{% url 'strange_references:delete_reference' reference.id %}">Delete reference</a>
-                <a class="btn btn-info" href="{% url 'strange_references:edit_reference' reference.id %}">Edit reference</a>
-            </ul>
-        {% endfor %}
+        <div class="panel panel-primary">
+            <div class="panel-heading" style="padding:25px;">
+                <label style="font-size:16px;" class="pull-right">{{total_ref }} References</label>
+                <a class="btn btn-success" href="{% url 'strange_references:new_reference' %}">Add reference</a>
+            </div>
+            <div class="panel-body">
+                {% for reference in references %}
+                    <ul id="reference-list">
+                        <li class="card hvr-border-fade" style="width: 100%">
+                            <div class="row">
+                                <div class="col-md-7">
+                                    <label class="lead card-title"> {{ reference.title }} </label>
+                                    <p>{{ reference.note }}</p>
+                                    <label>Source: {{ reference.link }} </label>
+                                </div>
+                                <div class="col-md-5" style="text-align: right; margin-top: 10px">
+                                    <a class="btn btn-danger btn-sm" href="{% url 'strange_references:delete_reference' reference.id %}"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                                    <a class="btn btn-primary btn-sm" href="{% url 'strange_references:edit_reference' reference.id %}"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+                                </div>
+                            </div>
+                            <hr>
+                            <label class="card-footer" style="font-size: 12px;">Date modified {{ reference.last_modified }}</label>
+                        </li>
+                    </ul>
+                {% endfor %}
+            </div>
+            <div class="panel-footer">You have {{ total_ref }} references</div>
+        </div>
+{#        {% for reference in references %}#}
+{#            <ul>#}
+{#                <li>#}
+{#                    <p>Reference Title: {{ reference.title }} </p>#}
+{#                    <p>Reference ID: {{ reference.id }} </p>#}
+{#                    <p>Reference Note: {{ reference.note }}</p>#}
+{#                    <p>Reference link: {{ reference.link }} </p>#}
+{#                    <p>Date added {{ reference.last_modified }}</p>#}
+{#                </li>#}
+{#                <a class="btn btn-warning" href="{% url 'strange_references:delete_reference' reference.id %}">Delete reference</a>#}
+{#                <a class="btn btn-info" href="{% url 'strange_references:edit_reference' reference.id %}">Edit reference</a>#}
+{#            </ul>#}
+{#        {% endfor %}#}
     </div>
 
     <!-- Modal -->

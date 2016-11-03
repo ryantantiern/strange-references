@@ -65,9 +65,11 @@ def register(request):
 def dashboard(request):
 	# Retrieve references posted by logged-in user
     references_object_array = Reference.objects.filter(user_id=request.user.id).order_by('-last_modified')
+    total_ref = Reference.objects.filter(user_id=request.user.id).count()
     context = {
         'user':request.user,
 		'references':references_object_array,
+        'total_ref':total_ref,
     }
     return render(request, 'strange_references/dashboard.html', context)
 
