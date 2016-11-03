@@ -4,123 +4,165 @@
 		{% load staticfiles %}
 
 		<title>Login</title>
-
-		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <!-- Bootstrap CSS and JS-->
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
 		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-
-		<link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+        <!-- Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
 
 		<style type="text/css">
-			h1 {
-				color: black;
-				text-align: center;
-			}
-
 			body {
-				background-color: #a9effc
+				background: url(static/img/background.jpg) no-repeat center center fixed;
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
+                -o-background-size: cover;
+                background-size: cover;
 			}
 		</style>
 
 		<script type="text/javascript">
 			var reg = false;
 			function registerToggle() {
-				console.log(reg);
 				if (reg==false) {
 					$('#form').attr("action", "{% url 'strange_references:register' %}");
+					$('#login-btn').text('Register');
+					$('#login-title').text('Register');
+                    $('#register-btn').text('Back to Log In')
 					reg=true;
-				}
-				else {
-					$('#form').attr("action", "{% url 'strange_references:authenticate' %}");
-					reg=false;
-				}
+                }
+                else {
+                    $('#form').attr("action", "{% url 'strange_references:authenticate' %}");
+                    $('#login-btn').text('Log In');
+                    $('#login-title').text('Log In');
+                    $('#register-btn').text('Register')
+                    reg=false;
+                }
+		}
+		var scroll = false;
+		function aboutScroll() {
+			if (scroll == false) {
+				window.scrollTo(0,window.innerHeight);
+                    document.getElementById('about-us-link').text = 'Log in';
+				scroll = true;
 			}
-		</script>
+			else {
+				window.scrollTo(0,0);
+                    document.getElementById('about-us-link').text = 'About Us';
+				scroll = false;
+			}
 
+		}
+	</script>
 </head>
 
-	<body>
+    <body>
+        <h1 id="login-banner" style=" font-family: 'Lobster', cursive;">Strange SHITReferences</h1>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8 col-sm-offset-2">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" style="text-align: center">
+                        	<label id="login-title" style="font-size: 16px;">Log in</label>
+                        </div>
+                        <form class="form-horizontal" id="form" action="{% url 'strange_references:authenticate' %}" method="post">
+                            <div class="panel-body">
+                                {% csrf_token %}
+                                {% if error_msg %}
+                                    <div class="row">
+                                        <div class="col-sm-12" style="text-align: center"><label style="color: red;">{{ error_msg }}</label></div>
+                                    </div>
+                                {% endif %}
+                                <!-- USERNAME -->
+                                <div class="form-group">
+                                    <div class="row">
+                                        <label class="control-label col-sm-3" for="email">Username:</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" name="uname" placeholder="Enter username" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- PASSWORD -->
+                                <div class="form-group">
+                                    <div class="row">
+                                        <label class="control-label col-sm-3" for="pwd">Password:</label>
+                                        <div class="col-sm-8">
+                                            <input type="password" class="form-control" name="pwd" placeholder="Enter password" required>
+                                        </div>
+                                    </div>
+                                </div>
 
-		<h1>Login Page</h1>
+                                <!-- Collapse content -->
+                                <div class="collapse" id="collapse-register">
+                                    <!-- CONFIRM PASSWORD -->
+                                    <div class="form-group " id="demo">
+                                        <div class="row">
+                                            <label class="control-label col-sm-3" for="pwd2">Confirm Password:</label>
+                                            <div class="col-sm-8">
+                                                <input type="password" class="form-control" name="pwd2" placeholder="Confirm password">
+                                            </div>
+                                        </div>
+                                    </div>
 
-		<div class="container">
-		<div class="row">
-		<div class="col-sm-2"></div>
-		<div class="col-sm-4">
-		  <h2 class="col-sm-4">Login</h2>
-		</div>
-		</div>
+                                    <!-- FIRST NAME -->
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <label class="control-label col-sm-3" for="fname">First name:</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" class="form-control" name="fname" placeholder="Enter first name">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- LAST NAME -->
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <label class="control-label col-sm-3" for="lname">Last name:</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" class="form-control" name="lname" placeholder="Enter last name">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- EMAIL -->
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <label class="control-label col-sm-3" for="email">Email:</label>
+                                            <div class="col-sm-8">
+                                                <input type="email" class="form-control" name="email" placeholder="Enter email">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel-footer" style="text-align: center">
+                                <button id="login-btn" type="submit" class="btn btn-info">Log In</button>
+                            </div>
+                        </form>
+                    </div>
+                    <p style="text-align: center; color:white;">
+                        Don't have an account?
+                        <a style="color: white; text-decoration: underline;" id="register-btn" data-toggle="collapse" data-target="#collapse-register" onclick="registerToggle()" >Register</a>
+                    </p>
+                </div>
+            </div>
+        </div>
 
+       <!-- <footer class="navbar-fixed-bottom" id="footer-banner"> -->
+       	<div class="navbar-fixed-bottom" id="footer-banner" style="margin-top: 50px;">
+       		<a id="about-us-link" onclick="aboutScroll()">About Us</a>
+       	</div>
 
-		  <form class="form-horizontal" id="form" action="{% url 'strange_references:authenticate' %}" method="post">
-		  	{% csrf_token %}
-		  	<!-- USERNAME -->
-		      <p style="color: red;">{{ pwd_error }}</p>
-		    <div class="form-group">
-		      <label class="control-label col-sm-2" for="email">Username:</label>
-		      <div class="col-sm-6">
-		        <input type="text" class="form-control" name="uname" placeholder="Enter username" required>
-		      </div>
-		    </div>
+       <!-- </footer> -->
 
-
-		    <!-- PASSWORD -->
-		    <div class="form-group">
-		      <label class="control-label col-sm-2" for="pwd">Password:</label>
-		      <div class="col-sm-6">
-		        <input type="password" class="form-control" name="pwd" placeholder="Enter password" required>
-		      </div>
-		    </div>
-
-
-		    <div class="collapse" id="collapse-register">
-
-
-		        <!-- CONFIRM PASSWORD -->
-		        <div class="form-group " id="demo">
-
-		          <label class="control-label col-sm-2" for="pwd2">Confirm Password:</label>
-		          <div class="col-sm-6">
-		            <input type="password" class="form-control" name="pwd2" placeholder="Confirm password">
-		          </div>
-		        </div>
-
-
-		        <!-- FIRST NAME -->
-
-		        <div class="form-group">
-		          <label class="control-label col-sm-2" for="fname">First name:</label>
-		          <div class="col-sm-6">
-		            <input type="text" class="form-control" name="fname" placeholder="Enter first name">
-		          </div>
-		        </div>
-
-
-		        <!-- LAST NAME -->
-		        <div class="form-group">
-		          <label class="control-label col-sm-2" for="lname">Last name:</label>
-		          <div class="col-sm-6">
-		            <input type="text" class="form-control" name="lname" placeholder="Enter last name">
-		          </div>
-		        </div>
-
-		        <!-- EMAIL -->
-		        <div class="form-group">
-		          <label class="control-label col-sm-2" for="email">Email:</label>
-		          <div class="col-sm-6">
-		            <input type="email" class="form-control" name="email" placeholder="Enter email">
-		          </div>
-		        </div>
-		    </div>
+       <div id="about-us">
+       	<h1 id="about-us-title">Group H</h1>
+       	<div class="container">
+       		<p id="about-us-text">IEP group doing a project together</p>
+       	</div>
+       	<img id='about-img' style="width: 100vw" src="{% static 'img/group-photo.jpeg' %}"/>
+       </div>
 
 
-
-
-		    <button type="submit" class="btn btn-default">Submit</button>
-		  </form>
-		      <button data-toggle="collapse" data-target="#collapse-register" class="btn btn-info" onclick="registerToggle()" >Register</button>
-
-	</body>
+    </body>
 </html>
