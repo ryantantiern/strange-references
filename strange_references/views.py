@@ -81,3 +81,23 @@ def register(request):
             'user_id': request.user.id,
         }
         return render(request, 'strange_references/authenticated.html', context)
+
+def hook(request)
+    GOOD_SIG = "sha1=a6fb4ebd52c81ca1da3336b952d468448932f01c"
+    if request.method != 'POST':
+        return HttpResponse(status=404)
+    if request.META['X-Hub-Signature'] != GOOD_SIG
+        return HttpResponse(status=403)
+    event = request.META['X-GitHub-Event']
+
+    print(request.POST)
+
+    if event == "push":
+        # Check for branch and run deployment script
+
+    return HttpResponse(status=200)
+
+
+
+
+
