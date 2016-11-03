@@ -8,8 +8,14 @@ from django.template.context import RequestContext
 from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+<<<<<<< HEAD
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
+=======
+from django.views.decorators.csrf import csrf_exempt
+import subprocess
+import hmac, hashlib
+>>>>>>> hooklistener
 
 from .models import Reference
 
@@ -128,3 +134,20 @@ def edit_form(request, reference_id):
 @login_required
 def add_form(request):
     return render(request, 'strange_references/add_reference.html', {})
+
+@csrf_exempt
+def hook(request): 
+    if request.method != 'POST':
+        return HttpResponse(status=404)
+
+    body = request.body
+    GOOD_SIG = "sha1=" + hmac.new("strange1", msg=body, digestmod=hashlib.sha1).hexdigest()
+    if not hmac.compare_digest(request.META['HTTP_X_HUB_SIGNATURE'], GOOD_SIG):
+        return HttpResponse("Signature invalid", status=403)
+    event = request.META['HTTP_X_GITHUB_EVENT']
+
+    if event == "push":
+        # Check for branch and run deployment script
+        process = subprocess.call(['/home/ec2-user/s-ref/deploy.sh'], shell=True)
+
+    return HttpResponse(status=200)
