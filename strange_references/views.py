@@ -156,6 +156,8 @@ def hook(request):
         parsed_json = json.loads(body)
         branch = parsed_json['ref'].split("/")[2] # format: refs/heads/master
         
+        s = ""
+        
         with open('/home/ec2-user/s-ref/deploy_type.env') as f:
             s = f.read()
         
