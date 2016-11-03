@@ -160,9 +160,9 @@ def hook(request):
             with open("/home/ec2-user/s-ref/logme.txt", "w") as myfile:
                 myfile.write("PUSH: branch: " + branch + " deploy_type: " + deploy_type)
             
+            if (deploy_type.find("production") > -1 and branch.find("master") > -1):
                 process = subprocess.call(['/home/ec2-user/s-ref/deploy.sh'], shell=True)
-                pass
+            elif (deploy_type.find("production") < 0 and branch.find("staging") > -1):
                 process = subprocess.call(['/home/ec2-user/s-ref/deploy.sh'], shell=True)
-                pass
 
     return HttpResponse(status=200)
