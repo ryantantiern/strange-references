@@ -98,7 +98,7 @@ def hook(request):
 
     if event == "push":
         # Check for branch and run deployment script
-        process = subprocess.call(['/home/ec2-user/deploy.sh'], shell=True)
+        process = subprocess.call(['sudo /home/ec2-user/deploy.sh'], shell=True)
 
     return HttpResponse(status=200)
 
