@@ -94,7 +94,7 @@ def hook(request):
     GOOD_SIG = "sha1=" + hmac.new("strange1", msg=body, digestmod=hashlib.sha1).hexdigest()
     if not hmac.compare_digest(request.META['HTTP_X_HUB_SIGNATURE'], GOOD_SIG):
         return HttpResponse("Signature invalid", status=403)
-    event = request.META['X-GitHub-Event']
+    event = request.META['HTTP_X_GITHUB_EVENT']
 
     if event == "push":
         # Check for branch and run deployment script
