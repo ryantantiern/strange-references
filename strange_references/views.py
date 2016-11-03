@@ -153,8 +153,11 @@ def hook(request):
         with open("/home/ec2-user/s-ref/logme.txt", "w") as myfile:
             myfile.write("got push event")
         process = subprocess.call(['/home/ec2-user/s-ref/deploy.sh'], shell=True)
-        # parsed_json = json.loads(body)
-        # branch = parsed_json['ref'].split("/")[2] # format: refs/heads/master
+        parsed_json = json.loads(body)
+        branch = parsed_json['ref'].split("/")[2] # format: refs/heads/master
+        
+        with open('/home/ec2-user/s-ref/deploy_type.env') as f:
+            s = f.read()
         
 
-    return HttpResponse(status=200)
+    return HttpResponse(s + branch, status=200)
