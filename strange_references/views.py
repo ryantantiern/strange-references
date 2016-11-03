@@ -19,7 +19,7 @@ from .models import Reference
 
 def login(request):
 	if request.user.is_authenticated:
-		return HttpResponseRedirect('/dashboard')
+		return HttpResponseRedirect('dashboard')
 	else:
 		template = loader.get_template('strange_references/login.html')
 		context = {}
@@ -42,7 +42,7 @@ def authenticate(request):
 	    user = auth.authenticate(username=username, password=password)
 	    if user is not None:
 	        auth.login(request, user)
-	        return HttpResponseRedirect('/dashboard')
+	        return HttpResponseRedirect('dashboard')
 	    else:
 	        context = {}
 	        return render(request, 'strange_references/invalid.html', context)
@@ -76,7 +76,7 @@ def register(request):
         user.last_name = request.POST.get('lname')
         user.save()
         auth.login(request,user)
-        return HttpResponseRedirect('/dashboard')
+        return HttpResponseRedirect('dashboard')
 
 @login_required
 def dashboard(request):
