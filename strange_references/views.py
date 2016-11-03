@@ -32,8 +32,10 @@ def authenticate(request):
         auth.login(request, user)
         return HttpResponseRedirect('dashboard')
     else:
-        context = {}
-        return render(request, 'strange_references/invalid.html', context)
+        context = {
+            'error_msg':"Username or password is incorrect"
+        }
+        return render(request, 'strange_references/login.html', context)
 
 def register(request):
     username = request.POST.get('uname')
@@ -46,11 +48,11 @@ def register(request):
         context = {
             'error_msg':'Email already in use',
         }
-        return render(request, 'strange_references/register.html', context)
+        return render(request, 'strange_references/login.html', context)
     # if passwords do not match
     elif password != password1:
         context = {
-            'pwd_error': 'The two passwords entered did not match please try registering again',
+            'error_msg': 'The two passwords entered did not match please try registering again',
         }
         return render(request,'strange_references/login.html', context)
     # otherwise add user to db
