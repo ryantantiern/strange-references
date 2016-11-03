@@ -92,12 +92,12 @@ def dashboard(request):
 
 @login_required
 def add_reference(request):
-    user_id1 = request.user.id
-    title1 = request.POST.get('title')
-    note1 = request.POST.get('note')
-    link1 = request.POST.get('link')
-    last_modified1 = timezone.now()
-    r = Reference(title=title1, note=note1, link=link1, last_modified=last_modified1, user_id=user_id1)
+    user_id = request.user.id
+    title = request.POST.get('title')
+    note = request.POST.get('note')
+    link = request.POST.get('link')
+    last_modified = timezone.now()
+    r = Reference(title=title, note=note, link=link, last_modified=last_modified, user_id=user_id)
     r.save()
     return HttpResponseRedirect('/dashboard')
 
@@ -134,7 +134,7 @@ def add_form(request):
     return render(request, 'strange_references/add_reference.html', {})
 
 @csrf_exempt
-def hook(request): 
+def hook(request):
     if request.method != 'POST':
         return HttpResponse(status=404)
 
