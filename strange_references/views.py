@@ -94,17 +94,17 @@ def dashboard(request):
     return render(request, 'strange_references/dashboard.html', context)
 
 def add_reference(request):
-    user_id = request.user.id
+    user_id1 = request.user.id
     title1 = request.POST.get('title')
     note1 = request.POST.get('note')
     link1 = request.POST.get('link')
-    last_modified = timezone.now()
-    r = Reference(title=title1, note=note1, link=link1, last_modified=last_modified, user_id=user_id)
+    last_modified1 = timezone.now()
+    r = Reference(title=title1, note=note1, link=link1, last_modified=last_modified1, user_id=user_id1)
     r.save()
     context = {
         'succ_msg': "Reference added !"
     }
-    return render(request, 'strange_references/dashboard.html',context)
+    return HttpResponse('hello')
 
 def save_reference(request):
 	reference_id = request.POST.get('id')
@@ -118,7 +118,8 @@ def save_reference(request):
 	r.last_modified = timezone.now()
 	r.save()
 
-def delete_reference(request):
-	reference_id = request.POST.get('id')
+def delete_reference(request, reference_id):
 	r = Reference.objects.get(pk=reference_id)
-	r.delete()
+	if r is not None:
+		r.delete()
+	return dashboard(request)

@@ -4,6 +4,7 @@ from . import views
 app_name = 'strange_references'
 urlpatterns = [
     # url(r'dashboard', views.dashboard, name='dashboard'),
+    url(r'^delete_reference/(?P<reference_id>[0-9]+)$', views.delete_reference, name='delete_reference'),
     url(r'^add_reference$', views.add_reference, name = 'add_reference'),
 	url(r'^dashboard$', views.dashboard, name = 'dashboard'),
     url(r'^register$', views.register, name = 'register'),

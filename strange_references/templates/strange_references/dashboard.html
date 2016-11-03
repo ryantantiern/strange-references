@@ -86,7 +86,7 @@
                     <p>Reference link: {{ reference.link }} </p>
                     <p>Date added {{ reference.last_modified }}</p>
                 </li>
-                <button class="btn btn-warning">Delete reference</button>
+                <a class="btn btn-warning" href="{% url 'strange_references:delete_reference' reference.id %}">Delete reference</a>
                 <button class="btn btn-info">Edit reference</button>
             </ul>
         {% endfor %}
