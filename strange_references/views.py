@@ -91,9 +91,9 @@ def hook(request):
         return HttpResponse(status=404)
 
     body = request.body
-    GOOD_SIG = "sha1=" + hmac.new("strange1", msg=body, digestmod=hashlib.sha1()).hexdigest()
+    GOOD_SIG = "sha1=" + hmac.new("strange1", msg=body, digestmod=hashlib.sha1).hexdigest()
     if not hmac.compare_digest(request.META['X-Hub-Signature'], GOOD_SIG):
-        return HttpResponse("Signature invalid", status=420)
+        return HttpResponse("Signature invalid", status=403)
     event = request.META['X-GitHub-Event']
 
     if event == "push":
