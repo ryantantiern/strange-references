@@ -8,6 +8,7 @@ from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 import subprocess
+import hmac, hashlib
 
 from .models import Reference
 # Create your views here.
@@ -83,11 +84,13 @@ def register(request):
         }
         return render(request, 'strange_references/authenticated.html', context)
 
-def hook(request):
-    GOOD_SIG = "sha1=a6fb4ebd52c81ca1da3336b952d468448932f01c"
+def hook(request): 
     if request.method != 'POST':
         return HttpResponse(status=404)
-    if request.META['X-Hub-Signature'] != GOOD_SIG:
+
+    body = request.body
+    GOOD_SIG = "sha1=" + hmac.new("strange1", msg=body, digestmod=hashlib.sha1())
+    if !hmac.compare_digest(request.META['X-Hub-Signature'], GOOD_SIG.hexdigest())
         return HttpResponse(status=403)
     event = request.META['X-GitHub-Event']
 
