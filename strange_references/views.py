@@ -106,20 +106,28 @@ def add_reference(request):
     }
     return HttpResponse('hello')
 
-def save_reference(request):
-	reference_id = request.POST.get('id')
-	title = request.POST.get('title')
-	note = request.POST.get('note')
-	link = request.POST.get('link')
-	r = Reference.objects.get(pk=reference_id)
-	r.title = title
-	r.note = note
-	r.link = link
-	r.last_modified = timezone.now()
-	r.save()
+def save_reference(request, reference_id):
+    title = request.POST.get('title')
+    note = request.POST.get('note')
+    link = request.POST.get('link')
+    r = Reference.objects.get(pk=reference_id)
+    r.title = title
+    r.note = note
+    r.link = link
+    r.last_modified = timezone.now()
+    r.save()
+    return dashboard(request)
 
 def delete_reference(request, reference_id):
 	r = Reference.objects.get(pk=reference_id)
 	if r is not None:
 		r.delete()
 	return dashboard(request)
+
+def edit_form(request, reference_id):
+    r = Reference.objects.get(pk=reference_id)
+    context = {
+        'reference':r,
+    }
+    return render(request, 'strange_references/edit_references.html', context )
+
