@@ -36,16 +36,16 @@ def authenticate(request):
     username = request.POST.get('uname')
     password = request.POST.get('pwd')
 
-	# Prevents direct access to URL
+    # Prevents direct access to URL
     if username is None or password is None:
-		return HttpResponseRedirect('login')
+        return HttpResponseRedirect('login')
     else:        
-	    user = auth.authenticate(username=username, password=password)
-	    if user is not None:
-	        auth.login(request, user)
-	        return HttpResponseRedirect('dashboard')
-	    else:
-	        context = {
+        user = auth.authenticate(username=username, password=password)
+        if user is not None:
+            auth.login(request, user)
+            return HttpResponseRedirect('dashboard')
+        else:
+            context = {
             'error_msg':"Username or password is incorrect"
             }
             return render(request, 'strange_references/login.html', context)
@@ -56,9 +56,9 @@ def register(request):
     password1 = request.POST.get('pwd2')
     email = request.POST.get('email')
 
-	# Prevents direct access to URL
+    # Prevents direct access to URL
     if username is None or password is None or email is None:
-		return HttpResponseRedirect('login')
+        return HttpResponseRedirect('login')
 
     # if email is already used
     if User.objects.filter(email=email).exists():
@@ -83,7 +83,7 @@ def register(request):
 
 @login_required
 def dashboard(request):
-	# Retrieve references posted by logged-in user
+    # Retrieve references posted by logged-in user
     references_object_array = Reference.objects.filter(user_id=request.user.id).order_by('-last_modified')
     total_ref = Reference.objects.filter(user_id=request.user.id).count()
     context = {
@@ -119,10 +119,10 @@ def save_reference(request, reference_id):
 
 @login_required
 def delete_reference(request, reference_id):
-	r = Reference.objects.get(pk=reference_id)
-	if r is not None:
-		r.delete()
-	return HttpResponseRedirect('/dashboard')
+    r = Reference.objects.get(pk=reference_id)
+    if r is not None:
+        r.delete()
+    return HttpResponseRedirect('/dashboard')
 
 @login_required
 def edit_form(request, reference_id):
